@@ -5,7 +5,7 @@ import morgan from 'morgan';
 
 import config from '../config/default.js';
 import dbController from '../controller/dbController.js';
-
+import router from '../routers/index.js';
 const app = express();
 const port = config.port;
 const debug = Debug('app:index');
@@ -15,6 +15,9 @@ app.set('port', port);
 app.use(morgan('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
+
+// Load Router
+app.use('/api/v1', router);
 
 // Database connected at
 dbController();
