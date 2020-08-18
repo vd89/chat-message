@@ -2,6 +2,7 @@ import Express from 'express';
 import Debug from 'debug';
 
 import userRoute from './userRouter.js';
+import authRoute from './auth.js';
 
 const { Router } = Express;
 const debug = Debug('app:router');
@@ -19,5 +20,6 @@ router.get('/', async (req, res) => {
 });
 
 router.use('/users', userRoute);
+router.use('/auth', authRoute);
 
 export default router;
