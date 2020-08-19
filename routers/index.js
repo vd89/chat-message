@@ -3,7 +3,8 @@ import Debug from 'debug';
 
 import userRoute from './userRouter.js';
 import authRoute from './auth.js';
-
+import chatRoomRoute from './chatRoomRouter.js';
+import { decode } from '../middleware/jwt.js';
 const { Router } = Express;
 const debug = Debug('app:router');
 
@@ -21,5 +22,6 @@ router.get('/', async (req, res) => {
 
 router.use('/users', userRoute);
 router.use('/auth', authRoute);
+router.use('/room', decode, chatRoomRoute);
 
 export default router;
