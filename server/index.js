@@ -27,11 +27,12 @@ dbController();
 
 // Server started at
 const server = http.createServer(app);
+
+/** Create socket connection */
+global.io = socketIo.listen(server);
+global.io.on('connection', WebSockets.connection);
+
 server.listen(port);
 server.on('listening', () => {
 	debug(`Server is running on port ${port}.... 🌵 🌵 🌵`);
 });
-
-// Create socket connection
-global.io = socketIo.listen(server);
-global.io.on('connection', WebSockets.connection);

@@ -43,6 +43,14 @@ class ChatRoom {
 			throw err;
 		}
 	}
+	static async getChatRoomByRoomId(roomId) {
+		try {
+			const room = await this.findOne({ _id: roomId });
+			return room;
+		} catch (err) {
+			throw err;
+		}
+	}
 }
 
 chatRoomSchema.loadClass(ChatRoom);
